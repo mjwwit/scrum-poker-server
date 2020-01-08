@@ -1,9 +1,21 @@
 const express = require('express')
+const cors = require('cors')
 const app = express()
-const port = 5000
+const port = 3000
 
-app.use('/', express.static('./dist', {
-  index: "index.html"
-}))
+app.use(cors())
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.get('/', (req, res) => res.send('Hello World!'))
+
+app.get('/room', (req, res) => {
+  return res.send('GET HTTP method on user resource');
+});
+
+app.post("/room", (req, res, next) => {
+   res.send('GET POST method on user resource');
+ });
+
+
+app.listen(port, () => console.log(`CORS-enabled web server on port ${port}!`))
+
+

@@ -1,42 +1,25 @@
-import { CardScheme, CustomScheme, RegularScheme, FibonacciScheme } from '../models/CardScheme';
-export default class SchemeHelper{
+import { Scheme } from "../models/CardScheme"
 
-     createScheme(schemeType: string, customScheme?: (string|number)[]): CardScheme | never {
-        let cardScheme: CardScheme = {type: '', scheme: []}
+export default class SchemeHelper{
+     createScheme(schemeType: string, customScheme: (string|number)[] = []) : Scheme | never {
         switch(schemeType) {
             case 'fibonacci':
-                    cardScheme = this.createFibonacciScheme()
-                break;
+                return {
+                        name: 'fibonacci',
+                        scheme: [0,1,2,3,5,8,13,21]
+               }
             case 'regular':
-                    cardScheme = this.createRegular()
-                break;
+                return {
+                    name: 'regular',
+                    scheme: [0, .5, 1, 2, 3, 5, 8, 13, 20]
+                }
             case 'custom':
-                    cardScheme = this.createCustom(customScheme || [])
-                break;
-             default:
+                return {
+                     name: 'custom',
+                     scheme: customScheme
+                }
+            default:
                 throw new Error("not a valid card scheme type");
-        }
-        
-        return cardScheme;
-    }
-
-    private createCustom(customArray: (string|number)[]): CustomScheme {
-        return {
-            type: 'custom',
-            scheme: customArray
-        }
-    }
-    private createRegular(): RegularScheme {
-        return {
-            type: 'regular',
-            scheme: [0, .5, 1, 2, 3, 5, 8, 13, 20]
-        }
-    }
-
-    private createFibonacciScheme(): FibonacciScheme {
-        return {
-            type: 'fibonacci',
-            scheme: [0,1,2,3,5,8,13,21]
         }
     }
 }

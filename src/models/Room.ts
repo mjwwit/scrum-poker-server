@@ -1,8 +1,8 @@
-import { CardScheme } from "./CardScheme";
+import { Scheme } from "./CardScheme";
 
 export interface Room {
-    id : any,
+    id : string,
     name: string,
-    cardScheme: CardScheme,
+    cardScheme: Scheme,
     timeout: number   
 }
