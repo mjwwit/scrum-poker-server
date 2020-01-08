@@ -17,5 +17,3 @@ app.post("/room", (req, res, next) => {
 
 
 app.listen(port, () => console.log(`CORS-enabled web server on port ${port}!`))
-
-
